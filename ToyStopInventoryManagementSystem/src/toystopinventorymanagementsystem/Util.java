@@ -1,12 +1,13 @@
 package toystopinventorymanagementsystem;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  *
  * @author Fahad Satti
  */
-public class Util {
+public class Util implements Serializable{
     final static String ALPHA_SALT = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     final static String ALPHANUM_SALT = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     
@@ -35,7 +36,7 @@ public class Util {
     }
 
     static int getSaltNum(int bounds) {
-        if(bounds<0)bounds = 2^32;
+        if(bounds<=0){bounds = 1;}
         Random salt  = new Random();
         return salt.nextInt(bounds);
     }

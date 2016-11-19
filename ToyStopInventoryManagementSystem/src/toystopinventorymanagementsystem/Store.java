@@ -1,6 +1,7 @@
 
 package toystopinventorymanagementsystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,7 +9,7 @@ import java.util.Random;
  *
  * @author Fahad Satti
  */
-public class Store {
+public class Store implements Serializable{
     public int UID;
     public String address;
     public String contactNo;

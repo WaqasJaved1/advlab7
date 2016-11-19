@@ -1,6 +1,7 @@
 
 package toystopinventorymanagementsystem;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
@@ -9,13 +10,13 @@ import java.util.Random;
  *
  * @author Fahad Satti
  */
-public class ToyStopService {
-    ArrayList<Employee> employees = new ArrayList<>();
-    ArrayList<Store> stores = new ArrayList<>();
+public class ToyStopService implements Serializable{
+    public ArrayList<Employee> employees = new ArrayList<>();
+    public ArrayList<Store> stores = new ArrayList<>();
         
     public void initEmployees(){
         //Create a List of first 200 Employees
-        for(int i=0; i<200; i++){
+        for(int i=0; i<10; i++){
             Employee myEmployee = new Employee();
             myEmployee.setUID(i);
             myEmployee.setRandomName();
@@ -27,7 +28,7 @@ public class ToyStopService {
     
     public void initStores(){
         //Create a List of Stores in a region
-        for(int i=0; i<100; i++){
+        for(int i=0; i<5; i++){
             Store myStore = new Store();
             myStore.setUID(Util.getSaltNum(-1));
             myStore.addRandomEmployees(employees);
@@ -44,7 +45,7 @@ public class ToyStopService {
     
     public void initToys(){
         //Add Toys in random stores
-        for(int i=0; i<200000; i++){
+        for(int i=0; i<10; i++){
             Toy newToy = new Toy();
             newToy.setUID(Util.getSaltNum(-1));
             newToy.setMinAge(Util.getSaltNum(1));
@@ -74,7 +75,7 @@ public class ToyStopService {
     //Creates a new store
     public int addStore(){
             Store myStore = new Store();
-            myStore.setUID(Util.getSaltNum(-1));
+            myStore.setUID(Util.getSaltNum(0));
             //This will assign any new employees or the ones remaining after previous store insertions.
             myStore.addRandomEmployees(employees);
             
@@ -85,5 +86,20 @@ public class ToyStopService {
             myStore.setEmail(storeEmail);
             stores.add(myStore);
             return myStore.getUID();
+    }
+    
+    public void addToy(){
+        Toy newToy = new Toy();
+            newToy.setUID(Util.getSaltNum(-1));
+            newToy.setMinAge(Util.getSaltNum(1));
+            newToy.setMaxAge(Util.getSaltNum(18));
+            newToy.setPrice(Util.getSaltNum(1000));
+            newToy.setName(Util.getSaltAlphaString());
+            newToy.setAddedOn(LocalDateTime.now());
+            
+            Random randStore = new Random();
+            int index = randStore.nextInt(stores.size());
+            Store selectedStore = (Store)stores.get(index);
+            selectedStore.addToy(newToy);
     }
 }

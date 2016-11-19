@@ -1,12 +1,13 @@
 package toystopinventorymanagementsystem;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author Fahad Satti
  */
-public class Toy {
+public class Toy implements Serializable{
     private int UID;
     private String name;
     private transient int price;

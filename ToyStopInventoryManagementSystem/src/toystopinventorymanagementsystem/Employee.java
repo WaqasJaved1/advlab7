@@ -1,11 +1,13 @@
 
 package toystopinventorymanagementsystem;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Fahad Satti
  */
-public class Employee {
+public class Employee implements Serializable{
     private String name;
     private int UID;
     private Email email;
